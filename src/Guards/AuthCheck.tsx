@@ -1,6 +1,7 @@
 "use client";
 import { useVerifySessionQuery } from "@/app/auth/api";
-import { useAppSelector } from "@/hooks/useRedux/useRedux";
+import { setUserState } from "@/app/auth/store";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux/useRedux";
 import { LoadingOverlay } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -11,6 +12,7 @@ export const AuthCheck = ({
   children: React.ReactNode;
 }>) => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const { access } = useAppSelector(
     (state) => state.persistedReducer.signInReducer.tokens
   );
@@ -22,8 +24,12 @@ export const AuthCheck = ({
   useEffect(() => {
     if ((!data && isFetched && !isLoading) || !access.value) {
       router.push("/auth/signin");
+    } else {
+      if (data) {
+        dispatch(setUserState(data));
+      }
     }
-  }, [data, isFetched, isLoading, router, access]);
+  }, [data, isFetched, isLoading, router, access.value, dispatch]);
 
   if (!access) return <LoadingOverlay visible />;
 

@@ -9,7 +9,7 @@ import {
   persistStore,
   persistReducer,
 } from "redux-persist";
-import { signInReducer } from "@/modules/auth/store";
+import { signInReducer, userReducer } from "@/modules/auth/store";
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
@@ -19,6 +19,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   signInReducer,
+  userReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

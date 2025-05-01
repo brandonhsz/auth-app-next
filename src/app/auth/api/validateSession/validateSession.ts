@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib";
+import { UserState } from "@/modules/auth/store/userSlice/userSliceInterfaces";
 
 interface VerifyResponse {
   mode: string;
@@ -47,7 +48,7 @@ interface VerifyResponse {
   };
 }
 
-const adapterVerifySession = (data: VerifyResponse) => {
+const adapterVerifySession = (data: VerifyResponse): UserState => {
   return {
     id: data.userId,
     uuid: data.userUuid,
@@ -56,13 +57,10 @@ const adapterVerifySession = (data: VerifyResponse) => {
     name: data.name,
     image: data.image,
     phoneNumber: data.phoneNumber,
-    ation: data.authentication,
   };
 };
 
-export const VerifySession = async (
-  token: string
-): Promise<ReturnType<typeof adapterVerifySession>> => {
+export const VerifySession = async (token: string) => {
   const response = await api.get("/auth/verify", {
     headers: {
       Authorization: token,

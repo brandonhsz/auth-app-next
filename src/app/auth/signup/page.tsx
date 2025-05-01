@@ -1,11 +1,17 @@
 "use client";
-import { TextInput, PasswordInput, Button } from "@mantine/core";
+import {
+  TextInput,
+  PasswordInput,
+  Button,
+  LoadingOverlay,
+} from "@mantine/core";
 import { LockKeyhole } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { useForm } from "@/hooks";
 import { SignUpSchema, TSignupSchema } from "@/modules/auth/schemas";
 import { useRegisterTenantMutation } from "../api";
+import { notifications } from "@mantine/notifications";
 
 const SignUp = () => {
   const t = useTranslations("SignUp");
@@ -22,12 +28,29 @@ const SignUp = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = (data: TSignupSchema) => {
-    tenantMutation.mutate(data);
+  const onSubmit = async (data: TSignupSchema) => {
+    try {
+      await tenantMutation.mutateAsync(data);
+      notifications.show({
+        message: t("success"),
+        className: "absolute top-0 right-0",
+      });
+    } catch {
+      notifications.show({
+        message: t("error"),
+        color: "red",
+        className: "absolute top-0 right-0",
+      });
+    }
   };
 
   return (
-    <div className="flex px-40 flex-col items-center justify-center h-screen">
+    <div className="relative flex px-40 flex-col items-center justify-center h-screen">
+      <LoadingOverlay
+        visible={tenantMutation.isPending}
+        zIndex={1000}
+        overlayProps={{ radius: "sm", blur: 2 }}
+      />
       <div>
         <header>
           <h2 className="font-bold text-xl">{t("title")}</h2>

@@ -4,6 +4,8 @@ import {
   mantineHtmlProps,
 } from "@mantine/core";
 
+import { Notifications } from "@mantine/notifications";
+
 import "./globals.css";
 import "@mantine/core/styles.css";
 import { getLocale } from "next-intl/server";
@@ -23,7 +25,10 @@ export default async function RootLayout({
       <body className="h-screen">
         <Providers>
           <NextIntlClientProvider>
-            <MantineProvider>{children}</MantineProvider>
+            <MantineProvider>
+              {children}
+              <Notifications />
+            </MantineProvider>
           </NextIntlClientProvider>
         </Providers>
       </body>

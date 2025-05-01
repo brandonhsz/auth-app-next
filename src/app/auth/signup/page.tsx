@@ -12,6 +12,7 @@ import { useForm } from "@/hooks";
 import { SignUpSchema, TSignupSchema } from "@/modules/auth/schemas";
 import { useRegisterTenantMutation } from "../api";
 import { notifications } from "@mantine/notifications";
+import { BUTTON_COLORS } from "@/lib/constants";
 
 const SignUp = () => {
   const t = useTranslations("SignUp");
@@ -136,7 +137,7 @@ const SignUp = () => {
           <Button
             disabled={!isValid}
             type="submit"
-            color="rgba(11, 59, 104, 1)"
+            color={BUTTON_COLORS.primary}
           >
             {t("create_account")}
           </Button>

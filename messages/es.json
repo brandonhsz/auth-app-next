@@ -14,5 +14,15 @@
         "create_account": "Crear mi Cuenta",
         "success": "¡Felicidades! Tu cuenta ha sido creada con éxito. Ahora puedes iniciar sesión y comenzar a usar la aplicación.",
         "error": "Ocurrió un error al crear tu cuenta. Por favor, verifica la información ingresada y vuelve a intentarlo."
+    },
+
+    "SignIn": {
+        "title": "Bienvenido de nuevo!",
+        "description": "Inicia sesion con tu usuario y contraseña para ingresar a la plataforma.",
+        "email": "Correo Electrónico",
+        "password": "Contraseña",
+        "sign_in": "Iniciar Sesión",
+        "forgot_password": "¿Olvidaste tu contraseña?",
+        "error": "Ocurrió un error al iniciar sesión. Por favor, verifica tus credenciales e inténtalo de nuevo."
     }
 }

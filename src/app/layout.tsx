@@ -8,6 +8,7 @@ import "./globals.css";
 import "@mantine/core/styles.css";
 import { getLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import { Providers } from "@/components";
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -20,9 +21,11 @@ export default async function RootLayout({
         <ColorSchemeScript />
       </head>
       <body className="h-screen">
-        <NextIntlClientProvider>
-          <MantineProvider>{children}</MantineProvider>
-        </NextIntlClientProvider>
+        <Providers>
+          <NextIntlClientProvider>
+            <MantineProvider>{children}</MantineProvider>
+          </NextIntlClientProvider>
+        </Providers>
       </body>
     </html>
   );

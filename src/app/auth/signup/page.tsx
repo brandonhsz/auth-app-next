@@ -2,13 +2,14 @@
 import { TextInput, PasswordInput, Button } from "@mantine/core";
 import { LockKeyhole } from "lucide-react";
 import { useTranslations } from "next-intl";
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "@/hooks";
-import { SignUpSchema } from "./schemas";
+import { SignUpSchema, TSignupSchema } from "@/modules/auth/schemas";
+import { useRegisterTenantMutation } from "../api";
 
-const Auth = () => {
+const SignUp = () => {
   const t = useTranslations("SignUp");
-
+  const tenantMutation = useRegisterTenantMutation();
   const {
     register,
     handleSubmit,
@@ -21,8 +22,8 @@ const Auth = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = (data: unknown) => {
-    console.log("Form Data:", data);
+  const onSubmit = (data: TSignupSchema) => {
+    tenantMutation.mutate(data);
   };
 
   return (
@@ -122,4 +123,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default SignUp;

@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-
 import {
   ColorSchemeScript,
   MantineProvider,
@@ -9,12 +7,7 @@ import {
 import "./globals.css";
 import "@mantine/core/styles.css";
 import { getLocale } from "next-intl/server";
-
-export const metadata: Metadata = {
-  title: "Pro180 test",
-  description: "Basic authentication flow with Next.js and Mantine",
-};
-
+import { NextIntlClientProvider } from "next-intl";
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -26,8 +19,10 @@ export default async function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body>
-        <MantineProvider>{children}</MantineProvider>
+      <body className="h-screen">
+        <NextIntlClientProvider>
+          <MantineProvider>{children}</MantineProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

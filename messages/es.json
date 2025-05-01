@@ -24,5 +24,10 @@
         "sign_in": "Iniciar Sesión",
         "forgot_password": "¿Olvidaste tu contraseña?",
         "error": "Ocurrió un error al iniciar sesión. Por favor, verifica tus credenciales e inténtalo de nuevo."
+    },
+
+    "Dashboard": {
+        "user_information": "Información del Usuario",
+        "logout": "Cerrar Sesión"
     }
 }

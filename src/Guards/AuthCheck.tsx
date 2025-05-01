@@ -24,12 +24,11 @@ export const AuthCheck = ({
   useEffect(() => {
     if ((!data && isFetched && !isLoading) || !access.value) {
       router.push("/auth/signin");
-    } else {
-      if (data) {
-        dispatch(setUserState(data));
-      }
     }
-  }, [data, isFetched, isLoading, router, access.value, dispatch]);
+    if (data) {
+      dispatch(setUserState(data));
+    }
+  }, [data, isFetched, isLoading, router, access.value]);
 
   if (!access) return <LoadingOverlay visible />;
 

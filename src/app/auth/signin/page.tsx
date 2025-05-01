@@ -7,9 +7,12 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { SignInSchema, TSignInSchema } from "@/modules/auth/schemas";
 import { useLoginTenantMutation } from "@/modules/auth/api";
+import { useAppDispatch } from "@/hooks/useRedux/useRedux";
+import { updateTokens } from "../store";
 
 const SignIn = () => {
   const t = useTranslations("SignIn");
+  const dispatch = useAppDispatch();
   const signInMutation = useLoginTenantMutation();
   const {
     register,
@@ -24,7 +27,10 @@ const SignIn = () => {
   });
 
   const onSubmit = async (data: TSignInSchema) => {
-    await signInMutation.mutateAsync(data);
+    const session = await signInMutation.mutateAsync(data);
+    if (session) {
+      dispatch(updateTokens(session.tokens));
+    }
   };
 
   return (

@@ -1,1 +1,1 @@
-export { schema as SignUpSchema } from "./signup.schema";
+export { schema as SignUpSchema, type TSignupSchema } from "./signup.schema";

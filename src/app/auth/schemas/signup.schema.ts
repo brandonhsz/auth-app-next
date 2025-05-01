@@ -11,7 +11,17 @@ export const schema = z
       .min(10, "El número de teléfono debe tener al menos 10 caracteres"),
     userPassword: z
       .string()
-      .min(6, "La contraseña debe tener al menos 6 caracteres"),
+      .refine(
+        (password) =>
+          password.length >= 16 ||
+          (password.length >= 8 &&
+            /[a-zA-Z]/.test(password) &&
+            /\d/.test(password)),
+        {
+          message:
+            "La contraseña debe tener al menos 16 caracteres O al menos 8 caracteres incluyendo un número y una letra",
+        }
+      ),
     userPasswordConfirmation: z
       .string()
       .min(
@@ -23,3 +33,5 @@ export const schema = z
     message: "Las contraseñas deben coincidir",
     path: ["userPasswordConfirmation"],
   });
+
+export type TSignupSchema = z.infer<typeof schema>;

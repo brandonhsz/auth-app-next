@@ -1,0 +1,15 @@
+{
+    "SignUp": {
+        "title": "Crea tu cuenta!",
+        "description": "Ingresa tu información y comienza a tomar el control del equipo comercial de tu empresa.",
+
+        "enterprise_name": "Nombre de tu Empresa",
+        "user_names": "Nombre(s)",
+        "user_last_names": "Apellidos",
+        "user_email": "Correo Electrónico",
+        "user_phone": "Teléfono de Contacto",
+        "user_password": "Contraseña",
+        "user_password_confirmation": "Confirmar Contraseña",
+        "create_account": "Crear mi Cuenta"
+    }
+}
